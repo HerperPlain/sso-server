@@ -31,6 +31,7 @@ public class DruidDataSourceConfig implements EnvironmentAware {
 
 	private RelaxedPropertyResolver propertyResolver;
 
+	@Override
 	public void setEnvironment(Environment env) {
 		this.propertyResolver = new RelaxedPropertyResolver(env, "spring.datasource.");
 	}
@@ -38,16 +39,6 @@ public class DruidDataSourceConfig implements EnvironmentAware {
 	@Bean
 	public DataSource dataSource() {
 		DruidDataSource datasource = new DruidDataSource();
-//		datasource.setUrl(propertyResolver.getProperty("url"));
-//		datasource.setDriverClassName(propertyResolver.getProperty("driver-class-name"));
-//		datasource.setUsername(propertyResolver.getProperty("username"));
-//		datasource.setPassword(propertyResolver.getProperty("password"));
-//		datasource.setInitialSize(Integer.valueOf(propertyResolver.getProperty("initial-size")));
-//		datasource.setMinIdle(Integer.valueOf(propertyResolver.getProperty("min-idle")));
-//		datasource.setMaxWait(Long.valueOf(propertyResolver.getProperty("max-wait")));
-//		datasource.setMaxActive(Integer.valueOf(propertyResolver.getProperty("max-active")));
-//		datasource.setMinEvictableIdleTimeMillis(
-//				Long.valueOf(propertyResolver.getProperty("min-evictable-idle-time-millis")));
 		try {
 			datasource.setFilters("stat,wall");
 		} catch (SQLException e) {
@@ -64,8 +55,10 @@ public class DruidDataSourceConfig implements EnvironmentAware {
 		Map<String, String> initParameters = new HashMap<String, String>();
 		// initParameters.put("loginUsername", "admin");// 用户名
 		// initParameters.put("loginPassword", "admin");// 密码
-		initParameters.put("resetEnable", "false");// 禁用HTML页面上的“Reset All”功能
-		initParameters.put("allow", ""); // IP白名单 (没有配置或者为空，则允许所有访问)
+		// 禁用HTML页面上的“Reset All”功能
+		initParameters.put("resetEnable", "false");
+		// IP白名单 (没有配置或者为空，则允许所有访问)
+		initParameters.put("allow", "");
 		// initParameters.put("deny", "192.168.20.38");// IP黑名单
 		// (存在共同时，deny优先于allow)
 		servletRegistrationBean.setInitParameters(initParameters);
@@ -81,7 +74,10 @@ public class DruidDataSourceConfig implements EnvironmentAware {
 		return filterRegistrationBean;
 	}
 
-	// 按照BeanId来拦截配置 用来bean的监控
+	/**
+	 * 按照BeanId来拦截配置 用来bean的监控
+	 * @return
+	 */
 	@Bean(value = "druid-stat-interceptor")
 	public DruidStatInterceptor DruidStatInterceptor() {
 		DruidStatInterceptor druidStatInterceptor = new DruidStatInterceptor();

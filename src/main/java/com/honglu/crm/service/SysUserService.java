@@ -15,6 +15,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 用户产销
+ */
 @Service
 public class SysUserService {
     private  Logger logger = LoggerFactory.getLogger(getClass());

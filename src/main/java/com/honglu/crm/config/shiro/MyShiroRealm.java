@@ -37,14 +37,21 @@ public class MyShiroRealm extends AuthorizingRealm {
         // 返回null的话，就会导致任何用户访问被拦截的请求时，都会自动跳转到unauthorizedUrl指定的地址
         return info;
     }
-    //登录验证
+
+    /**
+     * 登录验证
+     * @param authenticationToken
+     * @return
+     * @throws AuthenticationException
+     */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         //获取自定义shiroToken
         ShiroToken token = (ShiroToken) authenticationToken;
         String username = token.getUsername();
         if(!StringUtils.isEmpty(username)){
-            UUserBo user= sus.queryData(token);// 实际项目中，这里可以根据实际情况做缓存，如果不做，Shiro自己也是有时间间隔机制，2分钟内不会重复执行该方法
+            // 实际项目中，这里可以根据实际情况做缓存，如果不做，Shiro自己也是有时间间隔机制，2分钟内不会重复执行该方法
+            UUserBo user= sus.queryData(token);
             if(user!=null) {
                 return new SimpleAuthenticationInfo(user, user.getPassword(), getName());
             }

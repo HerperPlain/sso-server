@@ -34,17 +34,34 @@ public class UUserBo extends BaseBo implements Serializable{
 
     private String remark;
 
-    private String[] ids;// 多选框用
-    
-    private String userPic;// 用户头像
-    
-    private Integer roleId;// 角色id
-    
-    private String roleName;// 角色名称
-    
-    private String ip;// ip地址
-    
-    private String lastLoginTime;// 最后登录时间
+    /**
+     * 多选框用
+     */
+    private String[] ids;
+    /**
+     *  用户头像
+     */
+    private String userPic;
+
+    /**
+     * 角色id
+     */
+    private Integer roleId;
+
+    /**
+     * 角色名称
+     */
+    private String roleName;
+
+    /**
+     * ip地址
+     */
+    private String ip;
+
+    /**
+     * 最后登录时间
+     */
+    private String lastLoginTime;
     
     
     public String getIp() {

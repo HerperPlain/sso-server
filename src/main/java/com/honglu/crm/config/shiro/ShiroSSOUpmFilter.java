@@ -18,7 +18,8 @@ public class ShiroSSOUpmFilter extends PermissionsAuthorizationFilter {
     public boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws IOException {
         logger.info("权限校验数据为：{}",mappedValue);
         Subject currentUser = SecurityUtils.getSubject();
-        if(currentUser.isAuthenticated()){//判断用户是否是登录状态
+        //判断用户是否是登录状态
+        if(currentUser.isAuthenticated()){
             logger.info("当前用户为登录状态");
             return true;
         }

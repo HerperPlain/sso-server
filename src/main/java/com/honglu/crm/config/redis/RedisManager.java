@@ -13,11 +13,15 @@ public class RedisManager {
 	private String host = "127.0.0.1";
 	
 	private int port = 6379;
-	
-	// 0 - never expire
+
+	/**
+	 * 0 - never expire
+	 */
 	private int expire = 0;
-	
-	//timeout for jedis try to connect to redis server, not expire time! In milliseconds
+
+	/**
+	 * timeout for jedis try to connect to redis server, not expire time! In milliseconds
+	 */
 	private int timeout = 0;
 	
 	private String password = "";
@@ -140,7 +144,7 @@ public class RedisManager {
 
 	/**
 	 * keys
-	 * @param regex
+	 * @param pattern
 	 * @return
 	 */
 	public Set<byte[]> keys(String pattern){

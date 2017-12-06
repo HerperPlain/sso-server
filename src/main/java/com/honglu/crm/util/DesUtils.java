@@ -57,8 +57,9 @@ public class DesUtils {
      * @date 2015-3-17 下午02:49:52
      */
     public static String decrypt(String data) throws IOException, Exception {
-        if (data == null)
+        if (data == null) {
             return null;
+        }
         BASE64Decoder decoder = new BASE64Decoder();
         byte[] buf = decoder.decodeBuffer(data);
         byte[] bt = decrypt(buf, DES_KEY);
@@ -92,8 +93,9 @@ public class DesUtils {
      */
     public static String decrypt(String data, String key) throws IOException,
             Exception {
-        if (data == null)
+        if (data == null) {
             return null;
+        }
         BASE64Decoder decoder = new BASE64Decoder();
         byte[] buf = decoder.decodeBuffer(data);
         byte[] bt = decrypt(buf, key.getBytes(ENCODE));

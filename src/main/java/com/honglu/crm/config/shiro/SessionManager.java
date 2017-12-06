@@ -42,7 +42,8 @@ public class SessionManager extends DefaultWebSessionManager {
 			}
 			// 设置当前session状态
 			request.setAttribute(ShiroHttpServletRequest.REFERENCED_SESSION_ID_SOURCE,
-					ShiroHttpServletRequest.URL_SESSION_ID_SOURCE); // session来源与url
+					// session来源与url
+					ShiroHttpServletRequest.URL_SESSION_ID_SOURCE);
 			request.setAttribute(ShiroHttpServletRequest.REFERENCED_SESSION_ID, sid);
 			request.setAttribute(ShiroHttpServletRequest.REFERENCED_SESSION_ID_IS_VALID, Boolean.TRUE);
 			return sid;

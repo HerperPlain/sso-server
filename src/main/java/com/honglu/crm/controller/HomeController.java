@@ -16,6 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author hpsgts
+ */
 @Controller
 public class HomeController {
     public Logger logger = LoggerFactory.getLogger(getClass());
@@ -49,8 +52,6 @@ public class HomeController {
     @RequestMapping(value = "index.html")
     public ModelAndView index(HttpServletRequest request, HttpServletResponse response){
         ModelAndView model =new ModelAndView();
-
-//        request.getSession().setAttribute("userInfo",SecurityUtils.getSubject());
         logger.info("index this Session id is {}",SecurityUtils.getSubject().getSession().getId());
         model.setViewName("index");
         return model;

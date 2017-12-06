@@ -53,8 +53,9 @@ public class MD5Utils {
 			return null;
 		} finally {
 			try {
-				if (fis != null)
+				if (fis != null) {
 					fis.close();
+				}
 			} catch (IOException e) {
 
 			}

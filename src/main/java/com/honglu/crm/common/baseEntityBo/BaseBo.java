@@ -6,10 +6,18 @@ package com.honglu.crm.common.baseEntityBo;
  *
  */
 public class BaseBo {
-	
-	// 这2个参数由layui页面初始化list表单时，传过来
-	private Integer	pageIndex = 0;// 当前页码
-	private Integer pageSize = 10;// 当前页条数
+
+	/**
+	 * 这2个参数由layui页面初始化list表单时，传过来
+	 */
+	/**
+	 *  当前页码
+	 */
+	private Integer	pageIndex = 0;
+	/**
+	 * 当前页条数
+	 */
+	private Integer pageSize = 10;
 	
 	
 	public BaseBo() {
@@ -19,7 +27,8 @@ public class BaseBo {
 		return pageIndex;
 	}
 	public void setPageIndex(Integer pageIndex) {
-		if(pageIndex != null && pageIndex >=1){// 当前页
+		// 当前页
+		if(pageIndex != null && pageIndex >=1){
 			this.pageIndex = (pageIndex - 1 )*10;
 		}else{
 			this.pageIndex = pageIndex;
