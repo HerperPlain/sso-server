@@ -1,0 +1,191 @@
+
+<script src="jquery.dataTables.min.js"></script>
+<link rel="shortcut icon" href="#" type="image/png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="ThemeBucket">
+<link rel="shortcut icon" href="#" type="image/png">
+
+<title>数据字典</title>
+
+<!--data table-->
+
+<link rel="stylesheet" href="js/data-tables/DT_bootstrap.css" />
+
+<link rel="stylesheet" href="jquery.dataTables.min.css">
+<!-- page heading start-->
+<style>
+    span a {
+        color: #797979;
+        padding: 5px 10px;
+        display: inline-block;
+    }
+    .dataTables_paginate.paging_bootstrap.pagination a{
+        margin: 0 1px;
+        border: 1px solid #ddd;
+        list-style: none;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+    .dataTables_paginate.paging_bootstrap.pagination span a {
+        margin: 0 1px;
+        border: 1px solid #ddd;
+        cursor: pointer;
+        list-style: none;
+    }
+    .dataTables_paginate.paging_bootstrap.pagination a:hover {
+        border-color: #65cea7;
+        color: #FFFFFF;
+        background: #65cea7;
+    }
+    .dataTables_paginate.paging_bootstrap.pagination span a:hover {
+        border-color: #65cea7;
+        color: #FFFFFF;
+        background: #65cea7;
+    }
+    .current{
+        color:#FFFFFF;
+        background: #65cea7;
+        text-decoration: none;
+    }
+</style>
+    <div class="row">
+        <div class="col-sm-12">
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="adv-table editable-table ">
+                        <div class="clearfix">
+                            <ul class="breadcrumb">
+                                <li>
+                                    <a href="#">首页</a>
+                                </li>
+                                <li>
+                                    <a href="#">系统管理</a>
+                                </li>
+                                <li class="active"> 数据字典 </li>
+                            </ul>
+                            <div class="btn-group">
+                                <button data-toggle="modal" data-target="#myModal" class="btn btn-primary">
+                                    Add New <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+
+                        </div>
+                        <div class="space15"></div>
+                        <table class="table table-striped table-hover table-bordered" id="table-sample">
+                            <thead>
+                            <tr>
+                                <th>code</th>
+                                <th>name</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    新增
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form class="cmxform form-horizontal adminex-form" id="demoForm">
+                    <div class="form-group ">
+                        <label for="ccode" class="control-label col-lg-2">编码</label>
+                        <div class="col-lg-10">
+                            <input class="form-control" id="ccode" name="code" minlength="2" type="text" required />
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="cvalue" class="control-label col-lg-2">编码值</label>
+                        <div class="col-lg-10">
+                            <input class="form-control" id="cvalue" name="value" minlength="2" type="text" required />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary"  onclick="javascript:subForm()">
+                    提交
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<script>
+    $(document).ready(function () {
+           var dt = $('#table-sample').dataTable({
+                "bServerSide" : true, // 开启服务端处理模式
+                "bJQueryUI" : false,
+                "ajax": '/dict/queryData',
+                "bLengthChange": true,
+                "bPaginate":true,
+                "bSortable":true,
+                "bFilter":true,
+                "aoColumns" : [
+                    {"mData" : "code","sClass" : "center" },//显示样式
+                    {"mData" : "value"},
+                    {"mData" : "dictionaryId"}
+                ],
+                "columnDefs":[
+                    {//用来设置列一些特殊列的属性
+                        "targets": 2,//下标从零开始
+                        "bSortable":true,
+                        "mRender":function(data, type, row ){//a表示statCleanRevampId对应的值，c表示当前记录行对象
+                            return '&nbsp;&nbsp;&nbsp;<a href=\"javascript:void(0);\"><span class="label label-default label-mini" onclick="alert(1)">修改</span></a>'
+                                + '&nbsp;&nbsp;&nbsp;<a href=\"javascript:void(0);\"><span class="label label-warning label-mini" onclick="alert(1)">详细</span></a>'
+                                + '&nbsp;&nbsp;&nbsp;<a href=\"javascript:void(0);\"><span class="label label-danger label-mini" onclick="alert(1)">删除</span></a>';
+                        }
+                    }
+                ],
+                "oLanguage" : {//语言设置
+                    "sProcessing" : "处理中...",
+                    "sLengthMenu" : "显示 _MENU_ 项结果",
+                    "sZeroRecords" : "没有匹配结果",
+                    "sInfo" : "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                    "sInfoEmpty" : "显示第 0 至 0 项结果，共 0 项",
+                    "sInfoFiltered" : "(由 _MAX_ 项结果过滤)",
+                    "sInfoPostFix" : "",
+                    "sSearch" : "搜索:",
+                    "sUrl" : "",
+                    "sEmptyTable" : "表中数据为空",
+                    "sLoadingRecords" : "载入中...",
+                    "sInfoThousands" : ",",
+                    "oPaginate" : {
+                        "sFirst" : "首页",
+                        "sPrevious" : "上页",
+                        "sNext" : "下页",
+                        "sLast" : "末页"
+                    },
+                    "oAria" : {
+                        "sSortAscending" : ": 以升序排列此列",
+                        "sSortDescending" : ": 以降序排列此列"
+                    }
+                }
+            });
+
+    });
+    function subForm(){
+        var formData = new FormData(document.getElementById("demoForm"));
+        var result = $.postForm("/dict/save",formData);
+        if(result.data == 200){
+            $('#myModal').modal("hide");
+        }
+    }
+</script>

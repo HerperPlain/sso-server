@@ -1,0 +1,68 @@
+    <!--external css-->
+    <link rel="stylesheet" type="text/css" href="js/easyTree/easyTree.min.css" />
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div class="clearfix">
+                                <ul class="breadcrumb">
+                                    <li>
+                                        <a href="#">首页</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">系统管理</a>
+                                    </li>
+                                    <li class="active"> 菜单管理 </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <h3 class="text-success">Easy Tree Example</h3>
+                            <div class="easy-tree"><div class="easy-tree-toolbar"><div class="create"><button class="btn btn-default btn-sm btn-success" title="添加"><span class="glyphicon glyphicon-plus"></span></button></div> <div class="edit"><button class="btn btn-default btn-sm btn-primary" title="编辑"><span class="glyphicon glyphicon-edit"></span></button></div> <div class="remove"><button class="btn btn-default btn-sm btn-danger" title="删除"><span class="glyphicon glyphicon-remove"></span></button></div> </div>
+                                <ul>
+
+                                    <li class="parent_li"><span title="收起分支"><span class="glyphicon glyphicon-folder-open"></span><a href="javascript: void(0);" title="取消选择">Example 0
+
+            </a> </span><ul>
+                                        <li class=""><span><span class="glyphicon glyphicon-file"></span><a href="javascript: void(0);" title="取消选择">Example 1</a> </span></li>
+                                        <li class="li_selected"><span><span class="glyphicon glyphicon-file"></span><a href="javascript: void(0);" title="取消选择">Example 2</a> </span></li>
+                                        <li><span><span class="glyphicon glyphicon-file"></span><a href="javascript: void(0);" title="选择">Example 3</a> </span></li>
+                                        <li class="parent_li"><span title="收起分支"><span class="glyphicon glyphicon-folder-open"></span><a href="javascript: void(0);" title="选择">Example 4
+
+                    </a> </span><ul>
+                                            <li><span><span class="glyphicon glyphicon-file"></span><a href="javascript: void(0);" title="选择">Example 1</a> </span></li>
+                                            <li><span><span class="glyphicon glyphicon-file"></span><a href="javascript: void(0);" title="选择">Example 2</a> </span></li>
+                                            <li><span><span class="glyphicon glyphicon-file"></span><a href="javascript: void(0);" title="选择">Example 3</a> </span></li>
+                                            <li><span><span class="glyphicon glyphicon-file"></span><a href="javascript: void(0);" title="选择">Example 4</a> </span></li>
+                                        </ul></li>
+                                    </ul></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+<!--tree-->
+<script src="js/easyTree/easyTree.min.js"></script>
+
+<script>
+    (function ($) {
+        function init() {
+            $('.easy-tree').EasyTree({
+                addable: true,
+                editable: true,
+                deletable: true
+            });
+        }
+
+        window.onload = init();
+    })(jQuery)
+</script>
+
+</body>
+</html>
